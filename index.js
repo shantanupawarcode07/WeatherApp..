@@ -6,8 +6,6 @@ const grantAccessContainer = document.querySelector(".grant-location-container")
 const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
-const err=document.querySelector("[data-errorfound]");
-
 
 //initially vairables need????
 
@@ -83,7 +81,6 @@ async function fetchUserWeatherInfo(coordinates) {
     }
     catch(err) {
         loadingScreen.classList.remove("active");
-        err.classList.add("active");
         //HW
 
     }
@@ -152,6 +149,7 @@ searchForm.addEventListener("submit", (e) => {
     else 
         fetchSearchWeatherInfo(cityName);
 })
+
 async function fetchSearchWeatherInfo(city) {
     loadingScreen.classList.add("active");
     userInfoContainer.classList.remove("active");
@@ -164,10 +162,9 @@ async function fetchSearchWeatherInfo(city) {
         const data = await response.json();
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
-        err.classList.remove("active");
         renderWeatherInfo(data);
     }
     catch(err) {
-        err.classList.add("active");
+        //hW
     }
 }
